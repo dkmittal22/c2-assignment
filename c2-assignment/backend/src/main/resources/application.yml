@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  jackson:
+    deserialization:
+      # api-contract: unknown JSON fields are rejected with 400 BAD_REQUEST
+      fail-on-unknown-properties: true
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
